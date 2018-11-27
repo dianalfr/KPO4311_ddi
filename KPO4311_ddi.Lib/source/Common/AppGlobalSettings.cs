@@ -35,7 +35,14 @@ namespace KPO4311.ddi.Lib
                 _dataFileName = value;
             }
         }
-
+        static private IBookFactory _bookfactory;
+        static public IBookFactory BookFactory
+        {
+            get
+            {
+                return _bookfactory;
+            }
+        }
         static AppGlobalSettings()
         {
             Log = AppConfigUtility.AppSettings("logPath");
@@ -46,6 +53,14 @@ namespace KPO4311.ddi.Lib
         {
             AppGlobalSettings.Log = AppConfigUtility.AppSettings("logPath");
             AppGlobalSettings.Data = AppConfigUtility.AppSettings("dataFileName");
+            if (AppConfigUtility.AppSettings("BookFactory") == "BookTestFactory")
+            {
+                _bookfactory = new BookTestFactory();
+            }
+            else if (AppConfigUtility.AppSettings("BookFactory") == "BookSplitFileFactory")
+            {
+                _bookfactory = new BookSplitFileFactory();
+            }
         }
     }
 }

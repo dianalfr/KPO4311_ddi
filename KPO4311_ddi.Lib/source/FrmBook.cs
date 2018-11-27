@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 
-namespace KPO4311.ddi.Lib.source
+namespace KPO4311.ddi.Lib
 {
     public partial class FrmBook : Form
     {

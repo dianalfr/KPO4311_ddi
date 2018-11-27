@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace KPO4311.ddi.Lib
 {
-    public interface ILoadBookListCommand
+    public interface IBookFactory
     {
-        LoadStatus status { get; }
-        List<Book> bookL { get; }
-        void Execute();
+        IBookListSaver CreatedBookListSaver();
+        IBookListLoader CreatedBookListLoader();
     }
 }

@@ -16,7 +16,7 @@ namespace KPO4311.ddi.Lib
             FileNotExists = -2,
             GeneralError = -100
         }
-    public class BookListSplitFileLoader :ILoadBookListCommand
+    public class BookListSplitFileLoader : IBookListLoader
     {
         private List<Book> _bookL = null;
 
@@ -40,16 +40,24 @@ namespace KPO4311.ddi.Lib
         public void Execute()
         {
             LoadStatus current = LoadStatus.None;
-                if (!File.Exists("C:\\Users\\makbookair\\source\\repos\\KPO4311_ddi\\KPO4311_ddi.Main\\bin\\Debug\\Book.txt"))
-                {
-                    current = LoadStatus.FileNotExists;
-                    throw new FileNotFoundException(@"[Book.txt not in the directory]");
-                }
-                if (dataFileName == null)
-                {
-                    current = LoadStatus.FileNotExists;
-                    throw new FileNotFoundException(@"[name is empty]");
-                }
+            if (!File.Exists(dataFileName))
+            {
+                current = LoadStatus.FileNotExists;
+                throw new FileNotFoundException(@"[Book.txt not in the directory]");
+            }
+            if (dataFileName == null)
+            {
+                current = LoadStatus.FileNotExists;
+                throw new FileNotFoundException(@"[name is empty]");
+            }
+            var fi = new FileInfo(dataFileName);
+            if (fi.Length == 0)
+            {
+                current = LoadStatus.GeneralError;
+                throw new FileNotFoundException(@"File is empty");
+            }
+            else
+            {
                 _bookL = new List<Book>();
                 StreamReader sr = null;
                 using (sr = new StreamReader(dataFileName))
@@ -69,6 +77,7 @@ namespace KPO4311.ddi.Lib
                     }
                 }
                 current = LoadStatus.Success;
+            }
             }
         }
     }

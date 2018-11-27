@@ -1,4 +1,4 @@
-﻿namespace KPO4311.ddi.Lib.source
+﻿namespace KPO4311.ddi.Lib
 {
     partial class FrmBook
     {

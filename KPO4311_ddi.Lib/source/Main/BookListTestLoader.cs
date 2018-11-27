@@ -8,20 +8,34 @@ using System.IO;
 
 namespace KPO4311.ddi.Lib
 {
-    public class MockBookListCommand 
+    internal class BookListTestLoader : IBookListLoader
     {
-        public MockBookListCommand()
+
+        //private readonly string _dataFileName = "";
+        private List<Book> _BookList = null;
+        public BookListTestLoader()
         {
             this._BookList = null;
         }
-        private readonly string _dataFileName = "";
-        private List<Book>_BookList = null;
 
         public List<Book> books
         {
             get { return _BookList; }
         }
-        //LoadStatus ILoadBookListCommand.status => throw new NotImplementedException();
+        private LoadStatus _status = LoadStatus.None;
+        private List<Book> _bookL = null;
+        public List<Book> bookL
+        {
+            get { return _bookL; }
+        }
+        public LoadStatus status
+        {
+            get
+            {
+                return _status;
+            }
+        }
+        LoadStatus IBookListLoader.status => throw new NotImplementedException();
 
         public void Execute()
         {

@@ -36,6 +36,7 @@
             this.mnOpenBook = new System.Windows.Forms.ToolStripMenuItem();
             this.SStatus = new System.Windows.Forms.StatusStrip();
             this.dgvMyBook = new System.Windows.Forms.DataGridView();
+            this.nmSave_Click = new System.Windows.Forms.ToolStripMenuItem();
             this.MMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMyBook)).BeginInit();
             this.SuspendLayout();
@@ -55,7 +56,8 @@
             // 
             this.mmFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnExit,
-            this.mnOpen});
+            this.mnOpen,
+            this.nmSave_Click});
             this.mmFile.Name = "mmFile";
             this.mmFile.Size = new System.Drawing.Size(57, 20);
             this.mmFile.Text = "1&.Файл";
@@ -64,14 +66,14 @@
             // mnExit
             // 
             this.mnExit.Name = "mnExit";
-            this.mnExit.Size = new System.Drawing.Size(121, 22);
+            this.mnExit.Size = new System.Drawing.Size(180, 22);
             this.mnExit.Text = "Выход";
             this.mnExit.Click += new System.EventHandler(this.mnExit_Click);
             // 
             // mnOpen
             // 
             this.mnOpen.Name = "mnOpen";
-            this.mnOpen.Size = new System.Drawing.Size(121, 22);
+            this.mnOpen.Size = new System.Drawing.Size(180, 22);
             this.mnOpen.Text = "Открыть";
             this.mnOpen.Click += new System.EventHandler(this.mnOpen_Click);
             // 
@@ -107,6 +109,13 @@
             this.dgvMyBook.TabIndex = 2;
             this.dgvMyBook.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMockEmployeeList_CellContentClick);
             // 
+            // nmSave_Click
+            // 
+            this.nmSave_Click.Name = "nmSave_Click";
+            this.nmSave_Click.Size = new System.Drawing.Size(180, 22);
+            this.nmSave_Click.Text = "Сохранить";
+            this.nmSave_Click.Click += new System.EventHandler(this.nmSave_Click_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -135,6 +144,7 @@
         private System.Windows.Forms.DataGridView dgvMyBook;
         private System.Windows.Forms.ToolStripMenuItem mnBook;
         private System.Windows.Forms.ToolStripMenuItem mnOpenBook;
+        private System.Windows.Forms.ToolStripMenuItem nmSave_Click;
     }
 }
 

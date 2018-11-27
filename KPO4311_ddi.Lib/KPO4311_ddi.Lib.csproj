@@ -43,8 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BookListSplitFileLoader.cs" />
-    <Compile Include="ILoadBookListCommand.cs" />
+    <Compile Include="source\Main\BookListSplitFileLoader.cs" />
+    <Compile Include="source\Main\IBookFactory.cs" />
+    <Compile Include="source\Main\IBookListLoader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="source\Common\AppGlobalSettings.cs" />
     <Compile Include="source\FrmBook.cs">
@@ -53,9 +54,14 @@
     <Compile Include="source\FrmBook.Designer.cs">
       <DependentUpon>FrmBook.cs</DependentUpon>
     </Compile>
-    <Compile Include="source\Library\Book.cs" />
-    <Compile Include="source\Library\MockBookListCommand.cs" />
-    <Compile Include="source\Log\LogUtility.cs" />
+    <Compile Include="source\Main\Book.cs" />
+    <Compile Include="source\Main\BookListSplitFileSaver.cs" />
+    <Compile Include="source\Main\BookListTestSaver.cs" />
+    <Compile Include="source\Main\BookSplitFileFactory.cs" />
+    <Compile Include="source\Main\BookTestFactory.cs" />
+    <Compile Include="source\Main\BookListTestLoader.cs" />
+    <Compile Include="source\Main\IBookListSaver.cs" />
+    <Compile Include="source\Main\Log\LogUtility.cs" />
     <Compile Include="source\Utility\AppConfigUtility.cs">
       <CustomToolNamespace>KPO4311.Utility</CustomToolNamespace>
     </Compile>

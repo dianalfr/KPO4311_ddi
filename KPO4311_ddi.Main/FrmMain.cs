@@ -9,39 +9,44 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using KPO4311.ddi.Lib;
-using KPO4311.ddi.Lib.source;
 
 
 namespace KPO4311_ddi.Main
 {
     public partial class FrmMain : Form
     {
+        private List<Book> bk = null;
+        private BindingSource bsBooks = new BindingSource();
+        string dataParam = AppGlobalSettings.Data;
+        IBookFactory factory = null;
+
         public FrmMain()
         {
             InitializeComponent();
+            factory = AppGlobalSettings.BookFactory;
         }
 
         private void mnExit_Click(object sender, EventArgs e)
         {
             Close();
         }
-        private List<Book> BookList = null;
-        private BindingSource bsBooks = new BindingSource();
-        string dataParam = AppGlobalSettings.Data;
 
         private void mnOpen_Click(object sender, EventArgs e)
         {
             try
             {
-                ILoadBookListCommand loader = new BookListSplitFileLoader(dataParam);
+                /* IBookListLoader loader = new BookListSplitFileLoader(dataParam);
+                 loader.Execute();*/
+                IBookListLoader loader = factory.CreatedBookListLoader();
                 loader.Execute();
-                bsBooks.DataSource = loader.bookL;
-                dgvMyBook.DataSource = loader.bookL;
+
+                bk = loader.bookL;
+                bsBooks.DataSource = bk;
                 dgvMyBook.DataSource = bsBooks;
-                /*//Вызов исключения "Метод не реализован"
-                throw new NotImplementedException();
-                //Вызов базового исключения
-                throw new Exception("Неправильные входные параметры");*/
+               /* bsBooks.DataSource = loader.bookL;
+                dgvMyBook.DataSource = loader.bookL;
+                dgvMyBook.DataSource = bsBooks;*/
+
 
             }
             //обработка исключения "Метод не реализован"
@@ -51,9 +56,10 @@ namespace KPO4311_ddi.Main
                 LogUtility.ErrorLog(ex);
             }
             //обработка остальных исключений
-            catch (Exception ex)
+            catch (FileNotFoundException ex)
             {
-                MessageBox.Show("Ошибка №2: " + ex.Message);
+                MessageBox.Show(ex.Message);
+                LogUtility.ErrorLog(ex);
             }
         }
 
@@ -94,6 +100,26 @@ namespace KPO4311_ddi.Main
         private void dgvMockEmployeeList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void nmSave_Click_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                IBookListSaver listSaver = factory.CreatedBookListSaver();
+                listSaver.books = bk;
+                listSaver.Execute();
+            }
+            catch (NotImplementedException ex)
+            {
+                MessageBox.Show(ex.Message);
+                LogUtility.ErrorLog(ex);
+            }
+            catch (FileNotFoundException ex)
+            {
+                MessageBox.Show(ex.Message);
+                LogUtility.ErrorLog(ex);
+            }
         }
     }
 }
