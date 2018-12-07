@@ -48,6 +48,7 @@
             this.txtBoxAuthorBook.Name = "txtBoxAuthorBook";
             this.txtBoxAuthorBook.Size = new System.Drawing.Size(192, 20);
             this.txtBoxAuthorBook.TabIndex = 1;
+            this.txtBoxAuthorBook.TextChanged += new System.EventHandler(this.txtBoxAuthorBook_TextChanged);
             // 
             // txtBoxDataVBook
             // 

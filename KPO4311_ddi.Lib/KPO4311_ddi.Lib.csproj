@@ -62,6 +62,8 @@
     <Compile Include="source\Main\BookListTestLoader.cs" />
     <Compile Include="source\Main\IBookListSaver.cs" />
     <Compile Include="source\Main\Log\LogUtility.cs" />
+    <Compile Include="source\Main\MyException.cs" />
+    <Compile Include="source\Main\SaveClassException.cs" />
     <Compile Include="source\Utility\AppConfigUtility.cs">
       <CustomToolNamespace>KPO4311.Utility</CustomToolNamespace>
     </Compile>

@@ -32,11 +32,11 @@
             this.mmFile = new System.Windows.Forms.ToolStripMenuItem();
             this.mnExit = new System.Windows.Forms.ToolStripMenuItem();
             this.mnOpen = new System.Windows.Forms.ToolStripMenuItem();
+            this.nmSave_Click = new System.Windows.Forms.ToolStripMenuItem();
             this.mnBook = new System.Windows.Forms.ToolStripMenuItem();
             this.mnOpenBook = new System.Windows.Forms.ToolStripMenuItem();
             this.SStatus = new System.Windows.Forms.StatusStrip();
             this.dgvMyBook = new System.Windows.Forms.DataGridView();
-            this.nmSave_Click = new System.Windows.Forms.ToolStripMenuItem();
             this.MMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMyBook)).BeginInit();
             this.SuspendLayout();
@@ -66,16 +66,23 @@
             // mnExit
             // 
             this.mnExit.Name = "mnExit";
-            this.mnExit.Size = new System.Drawing.Size(180, 22);
+            this.mnExit.Size = new System.Drawing.Size(132, 22);
             this.mnExit.Text = "Выход";
             this.mnExit.Click += new System.EventHandler(this.mnExit_Click);
             // 
             // mnOpen
             // 
             this.mnOpen.Name = "mnOpen";
-            this.mnOpen.Size = new System.Drawing.Size(180, 22);
+            this.mnOpen.Size = new System.Drawing.Size(132, 22);
             this.mnOpen.Text = "Открыть";
             this.mnOpen.Click += new System.EventHandler(this.mnOpen_Click);
+            // 
+            // nmSave_Click
+            // 
+            this.nmSave_Click.Name = "nmSave_Click";
+            this.nmSave_Click.Size = new System.Drawing.Size(132, 22);
+            this.nmSave_Click.Text = "Сохранить";
+            this.nmSave_Click.Click += new System.EventHandler(this.nmSave_Click_Click);
             // 
             // mnBook
             // 
@@ -109,13 +116,6 @@
             this.dgvMyBook.TabIndex = 2;
             this.dgvMyBook.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMockEmployeeList_CellContentClick);
             // 
-            // nmSave_Click
-            // 
-            this.nmSave_Click.Name = "nmSave_Click";
-            this.nmSave_Click.Size = new System.Drawing.Size(180, 22);
-            this.nmSave_Click.Text = "Сохранить";
-            this.nmSave_Click.Click += new System.EventHandler(this.nmSave_Click_Click);
-            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -126,6 +126,7 @@
             this.Controls.Add(this.MMenu);
             this.MainMenuStrip = this.MMenu;
             this.Name = "FrmMain";
+            this.Load += new System.EventHandler(this.FrmMain_Load);
             this.MMenu.ResumeLayout(false);
             this.MMenu.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMyBook)).EndInit();

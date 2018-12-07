@@ -46,7 +46,16 @@ namespace KPO4311.ddi.Lib
         static AppGlobalSettings()
         {
             Log = AppConfigUtility.AppSettings("logPath");
-            Data = AppConfigUtility.AppSettings("dataFilePath");
+            Data = AppConfigUtility.AppSettings("dataFileName");
+           /* if (AppConfigUtility.AppSettings("BookFactory") != "BookTestFactory")
+            {
+                bool Exist = System.IO.File.Exists(Data);
+                System.Diagnostics.Debug.Assert(Exist, "Ошибка, выбран неправильный режим");
+                if (!Exist)
+                {
+                    Environment.Exit(0);
+                }
+            }*/
         }
 
         public static void Initialize()

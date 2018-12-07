@@ -11,61 +11,47 @@ namespace KPO4311.ddi.Lib
     internal class BookListTestLoader : IBookListLoader
     {
 
-        //private readonly string _dataFileName = "";
-        private List<Book> _BookList = null;
+        private readonly string dataFileName = "";
+        private List<Book> _BookL = null;
         public BookListTestLoader()
         {
-            this._BookList = null;
+            this._BookL = new List<Book>(); ;
         }
 
         public List<Book> books
         {
-            get { return _BookList; }
-        }
-        private LoadStatus _status = LoadStatus.None;
-        private List<Book> _bookL = null;
-        public List<Book> bookL
-        {
-            get { return _bookL; }
-        }
-        public LoadStatus status
-        {
-            get
-            {
-                return _status;
-            }
+            get { return _BookL; }
         }
         LoadStatus IBookListLoader.status => throw new NotImplementedException();
 
         public void Execute()
         {
             try
-            {
-                //Фигурная скобка для ограничения области видимости переменной employee            
+            {         
                 {
-                    Book book = new Book()
+                    Book book11 = new Book()
                     {
-                        Author = "",
+                        Author = "gg",
                         Name = "Не хочу взрослеть",
                         Datev = "17.06.2018",
                         Group = "комикс"
                     };
-                    books.Add(book);
+                    books.Add(book11);
                 }
                 {
-                    Book book = new Book()
+                    Book book12 = new Book()
                     {
                         Author = "Кови",
                         Name = "Навыки",
                         Datev = "1.05.2016",
                         Group = "саморазвитие"
                     };
-                    books.Add(book);
+                    books.Add(book12);
                 }
             }
             catch (NotImplementedException ex)
             {
-                throw new FileNotFoundException(ex.Message);
+                LogUtility.ErrorLog(ex);
             }
         }
     }

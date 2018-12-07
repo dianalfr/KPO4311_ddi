@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace KPO4311.ddi.Lib
 {
-    public interface IBookListLoader
+    public class MyException : Exception
     {
-        LoadStatus status { get; }
-        List<Book> books { get; }
-        void Execute();
+        public MyException(string message) : base(message)
+        {
+
+        }
     }
 }

@@ -24,6 +24,11 @@ namespace KPO4311_ddi.Main
         {
             InitializeComponent();
             factory = AppGlobalSettings.BookFactory;
+            System.Diagnostics.Debug.Assert(factory != null, "Factory Null");
+            if (factory == null)
+            {
+                Environment.Exit(0);
+            }
         }
 
         private void mnExit_Click(object sender, EventArgs e)
@@ -35,27 +40,26 @@ namespace KPO4311_ddi.Main
         {
             try
             {
-                /* IBookListLoader loader = new BookListSplitFileLoader(dataParam);
-                 loader.Execute();*/
-                IBookListLoader loader = factory.CreatedBookListLoader();
+
+                throw new MyException("Тест 1 не пройден!");
+               /* IBookListLoader loader = factory.CreatedBookListLoader();
                 loader.Execute();
 
-                bk = loader.bookL;
+                bk = loader.books;
                 bsBooks.DataSource = bk;
                 dgvMyBook.DataSource = bsBooks;
-               /* bsBooks.DataSource = loader.bookL;
-                dgvMyBook.DataSource = loader.bookL;
-                dgvMyBook.DataSource = bsBooks;*/
-
-
+                mnOpenBook.Visible = true;*/
             }
-            //обработка исключения "Метод не реализован"
+            catch (MyException ex)
+            {
+                MessageBox.Show(ex.Message);
+                SaveClassException.ErrorLog(ex);
+            }
             catch (NotImplementedException ex)
             {
                 MessageBox.Show("Ошибка №1: " + ex.Message);
                 LogUtility.ErrorLog(ex);
             }
-            //обработка остальных исключений
             catch (FileNotFoundException ex)
             {
                 MessageBox.Show(ex.Message);
@@ -68,38 +72,25 @@ namespace KPO4311_ddi.Main
             try
             {
                 FrmBook frmBook = new FrmBook();
-                //Задать сылка на текущий объект в таблицы
                 Book book = (bsBooks.Current as Book);
                 frmBook.SetBook(book);
-                //открыть форму в модальном режиме
                 frmBook.ShowDialog();
-
-                //Вызов исключения "Метод не реализован"
-               // throw new NotImplementedException();
-                 //Вызов базового исключения
-                 //throw new Exception("Неправильные входные параметры");
-
             }
-            //обработка исключения "Метод не реализован"
+            catch (MyException ex)
+            {
+                MessageBox.Show(ex.Message);
+                SaveClassException.ErrorLog(ex);
+            }
             catch (NotImplementedException ex)
             {
-                MessageBox.Show("Ошибка №1: " + ex.Message);
+                LogUtility.ErrorLog(ex);
             }
             //обработка остальных исключений
             catch (Exception ex)
             {
                 MessageBox.Show("Ошибка №2: " + ex.Message);
+                LogUtility.ErrorLog(ex);
             }
-        }
-
-        private void mmFile_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dgvMockEmployeeList_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private void nmSave_Click_Click(object sender, EventArgs e)
@@ -120,6 +111,20 @@ namespace KPO4311_ddi.Main
                 MessageBox.Show(ex.Message);
                 LogUtility.ErrorLog(ex);
             }
+        }
+        private void mmFile_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvMockEmployeeList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void FrmMain_Load(object sender, EventArgs e)
+        {
+            mnOpenBook.Visible = false;
         }
     }
 }

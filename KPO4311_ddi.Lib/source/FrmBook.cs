@@ -27,9 +27,7 @@ namespace KPO4311.ddi.Lib
 
         public void SetBook(Book book)
         {
-            //инициализировать скрытое поля класса
             this._book = book;
-            //присвоить значение данных сотрудника элементам редактирования
             this.txtboxNameBook.Text = _book.Name;
             this.txtBoxAuthorBook.Text = _book.Author;
             this.txtBoxDataVBook.Text = _book.Datev;
@@ -42,6 +40,11 @@ namespace KPO4311.ddi.Lib
         }
 
         private void txtboxNameBook_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBoxAuthorBook_TextChanged(object sender, EventArgs e)
         {
 
         }

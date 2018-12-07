@@ -18,17 +18,17 @@ namespace KPO4311.ddi.Lib
         }
     public class BookListSplitFileLoader : IBookListLoader
     {
-        private List<Book> _bookL = null;
+        private List<Book> _books = null;
 
         public BookListSplitFileLoader(string dataFileName)
         {
             this.dataFileName = dataFileName;
         }
-        private readonly string dataFileName = "";
+        private string dataFileName = "";
         private LoadStatus _status = LoadStatus.None;
-        public List<Book> bookL
+        public List<Book> books
         {
-            get { return _bookL; }
+            get { return _books; }
         }
         public LoadStatus status
         {
@@ -51,14 +51,19 @@ namespace KPO4311.ddi.Lib
                 throw new FileNotFoundException(@"[name is empty]");
             }
             var fi = new FileInfo(dataFileName);
+            /* if (fi.Length == 0)
+             {
+                 current = LoadStatus.GeneralError;
+                 throw new FileNotFoundException(@"File is empty");
+             }*/
             if (fi.Length == 0)
             {
                 current = LoadStatus.GeneralError;
-                throw new FileNotFoundException(@"File is empty");
+                throw new MyException(@"Тест №1 не пройден");
             }
             else
             {
-                _bookL = new List<Book>();
+                _books = new List<Book>();
                 StreamReader sr = null;
                 using (sr = new StreamReader(dataFileName))
                 {
@@ -73,7 +78,7 @@ namespace KPO4311.ddi.Lib
                             Datev = arr[2],
                             Group = arr[3]
                         };
-                        _bookL.Add(book1);
+                        _books.Add(book1);
                     }
                 }
                 current = LoadStatus.Success;
